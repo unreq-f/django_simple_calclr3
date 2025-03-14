@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+     <link rel="stylesheet" type="text/css" href="{% static 'calc/css/styles.css' %}">
+</head>
+<body>
+    <h2>Простой калькулятор</h2>
+
+    <!-- Обычные арифметические операции -->
+    <form method="post">
+        {% csrf_token %}
+        {{ calc_form.as_p }}
+        <button type="submit" name="calculate">Посчитать</button>
+    </form>
+
+    <!-- Окно для результата арифметики -->
+    {% if calc_result is not None %}
+        <div class="result-box">
+            Результат: {{ calc_result }}
+        </div>
+    {% endif %}
+
+    <!-- Вычисление синуса -->
+    <h2>Вычисление синуса</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ sin_form.as_p }}
+        <button type="submit" name="calculate_sin">Вычислить синус</button>
+    </form>
+
+    <!-- Окно для результата синуса -->
+    {% if sin_result is not None %}
+        <div class="result-box">
+            Синус угла: {{ sin_result }}
+        </div>
+    {% endif %}
+</body>
+</html>
+
+
